@@ -17,13 +17,16 @@ M.plugins = {
         ["nvim-telescope/telescope.nvim"] = override_conf.telescope,
         ["nvim-treesitter/nvim-treesitter"] = override_conf.treesitter,
         ["williamboman/mason.nvim"] = override_conf.mason,
+        ["hrsh7th/nvim-cmp"] = override_conf.cmp,
+        ["goolord/alpha-nvim"] = override_conf.alpha
     },
     -- Remove plugins
     remove = {},
     -- Modify plugin definition options
     user = {
         ["folke/which-key.nvim"] = { disable = false, },
-        ["glepnir/dashboard-nvim"] = { config = user_conf.dashboard },
+        ["goolord/alpha-nvim"] = { disable = false },
+        -- ["glepnir/dashboard-nvim"] = { config = user_conf.dashboard },
         ["rcarriga/nvim-notify"] = { config = user_conf.notify },
         ["dstein64/vim-startuptime"] = { cmd = "StartupTime" },
         ["phaazon/hop.nvim"] = {
@@ -37,7 +40,6 @@ M.plugins = {
                 require "custom.plugins.lsp"
             end,
         },
-        ["hrsh7th/nvim-cmp"] = { after = "friendly-snippets", config = user_conf.cmp },
         ["ahmedkhalf/project.nvim"] = { cmd = "Telescope", config = user_conf.project },
     }
 }

@@ -14,8 +14,101 @@ M.mason = {
     },
 }
 
+M.cmp = function()
+    local cmp = require 'cmp'
+    return {
+        mapping = {
+            ["<C-k>"] = cmp.mapping.select_prev_item(),
+            ["<C-j>"] = cmp.mapping.select_next_item(),
+            ["<C-u>"] = cmp.mapping.scroll_docs(-4),
+            ["<C-d>"] = cmp.mapping.scroll_docs(4),
+            ["<C-Space>"] = cmp.mapping.complete(),
+            ["<C-e>"] = cmp.mapping.close(),
+            ["<CR>"] = cmp.mapping.confirm {
+                behavior = cmp.ConfirmBehavior.Replace,
+                select = false,
+            },
+            ["<Tab>"] = cmp.mapping(function(fallback)
+                if cmp.visible() then
+                    cmp.select_next_item()
+                elseif require("luasnip").expand_or_jumpable() then
+                    vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-expand-or-jump", true, true, true), "")
+                else
+                    fallback()
+                end
+            end, {
+                "i",
+                "s",
+            }),
+            ["<S-Tab>"] = cmp.mapping(function(fallback)
+                if cmp.visible() then
+                    cmp.select_prev_item()
+                elseif require("luasnip").jumpable(-1) then
+                    vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-jump-prev", true, true, true), "")
+                else
+                    fallback()
+                end
+            end, {
+                "i",
+                "s",
+            }),
+        }
+    }
+end
+
+M.alpha = function()
+    local function button(sc, txt, keybind)
+        local sc_ = sc:gsub("%s", ""):gsub("SPC", "<leader>")
+
+        local opts = {
+            position = "center",
+            text = txt,
+            shortcut = sc,
+            cursor = 5,
+            width = 36,
+            align_shortcut = "right",
+            hl = "AlphaButtons",
+        }
+
+        if keybind then
+            opts.keymap = { "n", sc_, keybind, { noremap = true, silent = true } }
+        end
+
+        return {
+            type = "button",
+            val = txt,
+            on_press = function()
+                local key = vim.api.nvim_replace_termcodes(sc_, true, false, true) or ""
+                vim.api.nvim_feedkeys(key, "normal", false)
+            end,
+            opts = opts,
+        }
+    end
+
+    return {
+        header = {
+            val = {
+                [[███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗]],
+                [[████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║]],
+                [[██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║]],
+                [[██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║]],
+                [[██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║]],
+                [[╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝]],
+            }
+        },
+        buttons = {
+            val = {
+                button("SPC f p", "  Find Projects  ", ":Telescope projects<CR>"),
+                button("SPC f o", "  Recent File  ", ":Telescope oldfiles<CR>"),
+                button("SPC f f", "  Find File  ", ":Telescope find_files<CR>"),
+                button("SPC p s", "  Update Plugins  ", ":PackerSync<CR>"),
+                button("SPC e s", "  Settings", ":e $MYVIMRC | :cd %:p:h <CR>"),
+            }
+        }
+    }
+end
+
 M.nvim_tree = {
-    ignore_ft_on_setup = { "dashboard" },
     view = {
         mappings = {
             custom_only = false,
