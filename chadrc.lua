@@ -26,7 +26,6 @@ M.plugins = {
     user = {
         ["folke/which-key.nvim"] = { disable = false, },
         ["goolord/alpha-nvim"] = { disable = false },
-        -- ["glepnir/dashboard-nvim"] = { config = user_conf.dashboard },
         ["rcarriga/nvim-notify"] = { config = user_conf.notify },
         ["dstein64/vim-startuptime"] = { cmd = "StartupTime" },
         ["phaazon/hop.nvim"] = {
