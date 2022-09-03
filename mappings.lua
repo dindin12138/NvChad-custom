@@ -116,8 +116,6 @@ M.lspconfig = {
         ["<leader>li"] = { "<cmd> LspInfo <CR>", "LspInfo" },
         ["<leader>ll"] = { "<cmd> LspLog <CR>", "LspLog" },
         ["<leader>lr"] = { "<cmd> LspRestart <CR>", "LspRestart" },
-
-
     },
 }
 

@@ -7,7 +7,7 @@ local user_conf = require('custom.plugins.user_config')
 -- make sure you maintain the structure of `core/default_config.lua` here,
 -- example of changing theme:
 
-M.ui = { theme = "catppuccin", }
+M.ui = { theme = "onedark" }
 
 M.plugins = {
     -- Override default config of a plugin
@@ -23,7 +23,6 @@ M.plugins = {
     -- Modify plugin definition options
     user = {
         ["folke/which-key.nvim"] = { disable = false, },
-        ["catppuccin/nvim"] = { as = "catppuccin" },
         ["glepnir/dashboard-nvim"] = { config = user_conf.dashboard },
         ["rcarriga/nvim-notify"] = { config = user_conf.notify },
         ["dstein64/vim-startuptime"] = { cmd = "StartupTime" },
