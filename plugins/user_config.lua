@@ -54,4 +54,14 @@ function config.project()
     }
 end
 
+function config.lsp_signature()
+    require('lsp_signature').setup()
+end
+
+function config.aerial()
+    require("aerial").setup({
+        min_width = { 25, 0.13 },
+    })
+end
+
 return config

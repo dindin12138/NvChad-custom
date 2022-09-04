@@ -123,6 +123,10 @@ M.nvimtree = {
     n = { ["<leader>e"] = { "<cmd> NvimTreeToggle <CR>", "toggle nvimtree" } },
 }
 
+M.aerial = {
+    n = { ["<leader>o"] = { "<cmd> AerialToggle <CR>", "AerialToggle" } },
+}
+
 M.mason = {
     n = { ["<leader>m"] = { "<cmd> Mason <CR>", "Mason" } }
 }

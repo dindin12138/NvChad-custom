@@ -40,6 +40,8 @@ M.plugins = {
             end,
         },
         ["ahmedkhalf/project.nvim"] = { cmd = "Telescope", config = user_conf.project },
+        ["ray-x/lsp_signature.nvim"] = { after = "nvim-lspconfig", config = user_conf.lsp_signature },
+        ["stevearc/aerial.nvim"] = { cmd = "AerialToggle", config = user_conf.aerial }
     }
 }
 
