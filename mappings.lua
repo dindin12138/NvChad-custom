@@ -115,7 +115,7 @@ M.lspconfig = {
         ["<leader>lf"] = { function() vim.lsp.buf.formatting {} end, "lsp formatting" },
         ["<leader>li"] = { "<cmd> LspInfo <CR>", "LspInfo" },
         ["<leader>ll"] = { "<cmd> LspLog <CR>", "LspLog" },
-        ["<leader>lr"] = { "<cmd> LspRestart <CR>", "LspRestart" },
+        ["<leader>lr"] = { "<cmd> LspRestart <CR>", "LspRestart" }
     },
 }
 
@@ -134,8 +134,8 @@ M.mason = {
 M.tabufline = {
     n = {
         -- cycle through buffers
-        ["<TAB>"] = { function() require("core.utils").tabuflineNext() end, "goto next buffer", },
-        ["<S-Tab>"] = { function() require("core.utils").tabuflinePrev() end, "goto prev buffer", },
+        ["<TAB>"] = { function() require("nvchad_ui.tabufline").tabuflineNext() end, "goto next buffer", },
+        ["<S-Tab>"] = { function() require("nvchad_ui.tabufline").tabuflinePrev() end, "goto prev buffer", },
     },
 }
 
