@@ -8,11 +8,30 @@ M.ui = {
 
 M.mason = {
     ensure_installed = {
-        -- lua stuff
+        -- language server
         "lua-language-server",
         "clangd",
+        -- formatter
+        "clang-format",
+        "stylua"
     },
 }
+
+M.null_ls = function()
+    local present, null_ls = pcall(require, "null-ls")
+    if not present then
+        return
+    end
+    local b = null_ls.builtins
+    local sources = {
+        b.formatting.stylua,
+        b.formatting.clang_format,
+    }
+    null_ls.setup {
+        debug = true,
+        sources = sources,
+    }
+end
 
 M.cmp = function()
     local cmp = require 'cmp'

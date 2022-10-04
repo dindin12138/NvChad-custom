@@ -1,7 +1,7 @@
 -- Just an example, supposed to be placed in /lua/custom/
 
 local M = {}
-local conf = require('custom.plugins.config')
+local conf = require "custom.plugins.config"
 
 M.ui = { theme = "onedark" }
 
@@ -13,13 +13,13 @@ M.plugins = {
     ["williamboman/mason.nvim"] = { override_options = conf.mason },
     ["hrsh7th/nvim-cmp"] = { override_options = conf.cmp },
     ["goolord/alpha-nvim"] = { disable = false, override_options = conf.alpha },
-    ["folke/which-key.nvim"] = { disable = false, },
+    ["folke/which-key.nvim"] = { disable = false },
     ["rcarriga/nvim-notify"] = { config = conf.notify },
     ["dstein64/vim-startuptime"] = { cmd = "StartupTime" },
     ["phaazon/hop.nvim"] = {
-        branch = 'v2',
+        branch = "v2",
         cmd = { "HopWord", "HopLine", "HopChar1" },
-        config = conf.hop
+        config = conf.hop,
     },
     ["neovim/nvim-lspconfig"] = {
         config = function()
@@ -29,9 +29,13 @@ M.plugins = {
     },
     ["ahmedkhalf/project.nvim"] = { cmd = "Telescope", config = conf.project },
     ["ray-x/lsp_signature.nvim"] = { after = "nvim-lspconfig", config = conf.lsp_signature },
-    ["stevearc/aerial.nvim"] = { cmd = "AerialToggle", config = conf.aerial }
+    ["stevearc/aerial.nvim"] = { cmd = "AerialToggle", config = conf.aerial },
+    ["jose-elias-alvarez/null-ls.nvim"] = {
+        after = "nvim-lspconfig",
+        config = conf.null_ls,
+    },
 }
 
-M.mappings = require("custom.mappings")
+M.mappings = require "custom.mappings"
 
 return M
