@@ -240,6 +240,12 @@ M.disabled = {
         ["<leader>wK"] = "",
         ["<leader>wk"] = "",
         ["<leader>cc"] = "",
+        ["]c"] = "",
+        ["[c"] = "",
+        ["<leader>rh"] = "",
+        ["<leader>ph"] = "",
+        ["<leader>gb"] = "",
+        ["<leader>td"] = "",
     },
     i = {
         ["<C-b>"] = "",
