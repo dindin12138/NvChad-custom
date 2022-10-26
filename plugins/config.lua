@@ -6,6 +6,12 @@ M.ui = {
     },
 }
 
+M.catppuccin = function()
+    require("catppuccin").setup {
+        flavour = "mocha",
+    }
+end
+
 M.mason = {
     ensure_installed = {
         -- language server
@@ -13,7 +19,7 @@ M.mason = {
         "clangd",
         -- formatter
         "clang-format",
-        "stylua"
+        "stylua",
     },
 }
 
@@ -34,7 +40,7 @@ M.null_ls = function()
 end
 
 M.cmp = function()
-    local cmp = require 'cmp'
+    local cmp = require "cmp"
     return {
         mapping = {
             ["<C-k>"] = cmp.mapping.select_prev_item(),
@@ -51,7 +57,10 @@ M.cmp = function()
                 if cmp.visible() then
                     cmp.select_next_item()
                 elseif require("luasnip").expand_or_jumpable() then
-                    vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-expand-or-jump", true, true, true), "")
+                    vim.fn.feedkeys(
+                        vim.api.nvim_replace_termcodes("<Plug>luasnip-expand-or-jump", true, true, true),
+                        ""
+                    )
                 else
                     fallback()
                 end
@@ -71,7 +80,7 @@ M.cmp = function()
                 "i",
                 "s",
             }),
-        }
+        },
     }
 end
 
@@ -113,7 +122,7 @@ M.alpha = function()
                 [[██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║]],
                 [[██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║]],
                 [[╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝]],
-            }
+            },
         },
         buttons = {
             val = {
@@ -122,8 +131,8 @@ M.alpha = function()
                 button("SPC f f", "  Find File  ", ":Telescope find_files<CR>"),
                 button("SPC p s", "  Update Plugins  ", ":PackerSync<CR>"),
                 button("SPC e s", "  Settings", ":e $MYVIMRC | :cd %:p:h <CR>"),
-            }
-        }
+            },
+        },
     }
 end
 
@@ -174,15 +183,15 @@ M.telescope = {
                 -- The preview window scrolls up and down
                 ["<C-u>"] = "preview_scrolling_up",
                 ["<C-d>"] = "preview_scrolling_down",
-            }
-        }
+            },
+        },
     },
     extensions_list = { "themes", "terms", "projects" },
 }
 
 M.treesitter = {
     ensure_installed = "all",
-    ignore_install = { 'phpdoc' },
+    ignore_install = { "phpdoc" },
     incremental_selection = {
         enable = true,
         keymaps = {
@@ -195,7 +204,7 @@ M.treesitter = {
 }
 
 M.notify = function()
-    require("notify").setup({
+    require("notify").setup {
         ---@usage Animation style one of { "fade", "slide", "fade_in_slide_out", "static" }
         stages = "slide",
         ---@usage Function called when a new window is opened, use for changing win settings/config
@@ -218,13 +227,13 @@ M.notify = function()
             DEBUG = "",
             TRACE = "✎",
         },
-    })
+    }
 
-    vim.notify = require("notify")
+    vim.notify = require "notify"
 end
 
 M.hop = function()
-    require('hop').setup { keys = 'etovxqpdygfblzhckisuran' }
+    require("hop").setup { keys = "etovxqpdygfblzhckisuran" }
 end
 
 M.project = function()
@@ -244,18 +253,18 @@ M.project = function()
             ".svn",
             "Makefile",
         },
-        exclude_dirs = { "~/.local/*" }
+        exclude_dirs = { "~/.local/*" },
     }
 end
 
 M.lsp_signature = function()
-    require('lsp_signature').setup()
+    require("lsp_signature").setup()
 end
 
 M.aerial = function()
-    require("aerial").setup({
+    require("aerial").setup {
         min_width = { 25, 0.13 },
-    })
+    }
 end
 
 return M

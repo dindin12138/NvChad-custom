@@ -5,12 +5,7 @@ M.ui = { theme = "catppuccin" }
 
 M.plugins = {
     ["NvChad/ui"] = { override_options = conf.ui },
-    ["catppuccin/nvim"] = {
-        as = "catppuccin",
-        config = function()
-            require("catppuccin").setup { flavour = "mocha" }
-        end
-    },
+    ["catppuccin/nvim"] = { as = "catppuccin", config = conf.catppuccin },
     ["kyazdani42/nvim-tree.lua"] = { override_options = conf.nvim_tree },
     ["nvim-telescope/telescope.nvim"] = { override_options = conf.telescope },
     ["nvim-treesitter/nvim-treesitter"] = { override_options = conf.treesitter },
