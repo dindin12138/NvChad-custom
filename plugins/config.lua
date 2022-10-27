@@ -17,6 +17,9 @@ M.mason = {
         -- language server
         "lua-language-server",
         "clangd",
+        "rust-analyzer",
+        "pyright",
+        "bash-language-server",
         -- formatter
         "clang-format",
         "stylua",
