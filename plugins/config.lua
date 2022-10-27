@@ -257,6 +257,11 @@ M.project = function()
     }
 end
 
+M.lspconfig = function ()
+    require "plugins.configs.lspconfig"
+    require "custom.plugins.lsp"
+end
+
 M.lsp_signature = function()
     require("lsp_signature").setup()
 end
