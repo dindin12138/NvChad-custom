@@ -133,7 +133,7 @@ M.alpha = function()
                 button("SPC f o", "  Recent File  ", ":Telescope oldfiles<CR>"),
                 button("SPC f f", "  Find File  ", ":Telescope find_files<CR>"),
                 button("SPC p s", "  Update Plugins  ", ":PackerSync<CR>"),
-                button("SPC e s", "  Settings", ":e $MYVIMRC | :cd %:p:h <CR>"),
+                button("SPC e s", "  Settings", ":e ~/.config/nvim/lua/custom/chadrc.lua | :cd %:p:h <CR>"),
             },
         },
     }
