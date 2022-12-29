@@ -115,7 +115,8 @@ M.lspconfig = {
         ["<leader>lf"] = { function() vim.lsp.buf.formatting {} end, "lsp formatting" },
         ["<leader>li"] = { "<cmd> LspInfo <CR>", "LspInfo" },
         ["<leader>ll"] = { "<cmd> LspLog <CR>", "LspLog" },
-        ["<leader>lr"] = { "<cmd> LspRestart <CR>", "LspRestart" }
+        ["<leader>lr"] = { "<cmd> LspRestart <CR>", "LspRestart" },
+        ["<leader>lt"] = { "<cmd> TroubleToggle <CR>", "TroubleToggle" }
     },
 }
 

@@ -248,4 +248,8 @@ M.symbols_outline = function()
     require("symbols-outline").setup()
 end
 
+M.trouble = function()
+    require("trouble").setup()
+end
+
 return M
