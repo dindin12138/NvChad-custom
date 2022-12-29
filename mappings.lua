@@ -123,8 +123,8 @@ M.nvimtree = {
     n = { ["<leader>e"] = { "<cmd> NvimTreeToggle <CR>", "toggle nvimtree" } },
 }
 
-M.aerial = {
-    n = { ["<leader>o"] = { "<cmd> AerialToggle <CR>", "AerialToggle" } },
+M.symbols_outline = {
+    n = { ["<leader>o"] = { "<cmd> SymbolsOutline <CR>", "SymbolsOutline" } },
 }
 
 M.mason = {
@@ -153,9 +153,7 @@ M.StartupTime = {
 
 M.hop = {
     n = {
-        ["<leader>w"] = { "<cmd> HopWord <CR>", "HopWord" },
-        ["<leader>j"] = { "<cmd> HopLine <CR>", "HopLine" },
-        ["<leader>c"] = { "<cmd> HopChar1 <CR>", "HopChar1" }
+        ["<leader>j"] = { "<cmd> HopChar2 <CR>", "HopChar2" }
     },
 }
 

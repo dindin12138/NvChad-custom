@@ -2,14 +2,12 @@ local M = {}
 
 M.ui = {
     tabufline = {
-        lazyload = false, -- to show tabufline by default
-    },
+        lazyload = false -- to show tabufline by default
+    }
 }
 
 M.catppuccin = function()
-    require("catppuccin").setup {
-        flavour = "mocha",
-    }
+    require("catppuccin").setup()
 end
 
 M.mason = {
@@ -22,8 +20,8 @@ M.mason = {
         "bash-language-server",
         -- formatter
         "clang-format",
-        "stylua",
-    },
+        "stylua"
+    }
 }
 
 M.null_ls = function()
@@ -34,11 +32,11 @@ M.null_ls = function()
     local b = null_ls.builtins
     local sources = {
         b.formatting.stylua,
-        b.formatting.clang_format,
+        b.formatting.clang_format
     }
     null_ls.setup {
         debug = true,
-        sources = sources,
+        sources = sources
     }
 end
 
@@ -82,8 +80,8 @@ M.cmp = function()
             end, {
                 "i",
                 "s",
-            }),
-        },
+            })
+        }
     }
 end
 
@@ -98,7 +96,7 @@ M.alpha = function()
             cursor = 5,
             width = 36,
             align_shortcut = "right",
-            hl = "AlphaButtons",
+            hl = "AlphaButtons"
         }
 
         if keybind then
@@ -112,7 +110,7 @@ M.alpha = function()
                 local key = vim.api.nvim_replace_termcodes(sc_, true, false, true) or ""
                 vim.api.nvim_feedkeys(key, "normal", false)
             end,
-            opts = opts,
+            opts = opts
         }
     end
 
@@ -134,62 +132,64 @@ M.alpha = function()
                 button("SPC f f", "  Find File  ", ":Telescope find_files<CR>"),
                 button("SPC p s", "  Update Plugins  ", ":PackerSync<CR>"),
                 button("SPC e s", "  Settings", ":e ~/.config/nvim/lua/custom/chadrc.lua | :cd %:p:h <CR>"),
-            },
-        },
+            }
+        }
     }
 end
 
 M.nvim_tree = {
+    disable_netrw = true,
+    ignore_ft_on_setup = { "dashboard" },
+    hijack_cursor = true,
+    respect_buf_cwd = true,
+    update_cwd = true,
+    update_focused_file = {
+        enable = true,
+        update_root = false,
+    },
+    git = { enable = false, ignore = false },
+    filters = { dotfiles = true },
     view = {
+        width = 25,
+        hide_root_folder = true,
         mappings = {
             custom_only = false,
             list = {
-                -- Open a file or folder
                 { key = { "l", "o", "<CR>" }, action = "edit" },
-                -- Open the file in split screen
                 { key = "v", action = "vsplit" },
                 { key = "h", action = "split" },
-                -- Show hidden files
                 { key = "i", action = "toggle_git_ignored" },
                 { key = ".", action = "toggle_dotfiles" },
-                -- File operations
                 { key = "<F5>", action = "refresh" },
                 { key = "a", action = "create" },
                 { key = "d", action = "remove" },
                 { key = "r", action = "rename" },
                 { key = "x", action = "cut" },
                 { key = "y", action = "copy" },
-                { key = "p", action = "paste" },
-            },
-        },
-    },
+                { key = "p", action = "paste" }
+            }
+        }
+    }
 }
 
 M.telescope = {
     defaults = {
         mappings = {
             i = {
-                -- map actions.which_key to <C-h> (default: <C-/>)
-                -- actions.which_key shows the mappings for your picker,
-                -- e.g. git_{create, delete, ...}_branch for the git_branches picker
                 ["<C-h>"] = "which_key",
-                -- Move up and down
                 ["<C-j>"] = "move_selection_next",
                 ["<C-k>"] = "move_selection_previous",
                 ["<Down>"] = "move_selection_next",
                 ["<Up>"] = "move_selection_previous",
-                -- The historical record
                 ["<C-n>"] = "cycle_history_next",
                 ["<C-p>"] = "cycle_history_prev",
-                -- Close the window
                 ["<C-c>"] = "close",
-                -- The preview window scrolls up and down
                 ["<C-u>"] = "preview_scrolling_up",
-                ["<C-d>"] = "preview_scrolling_down",
-            },
-        },
+                ["<C-d>"] = "preview_scrolling_down"
+            }
+        }
     },
-    extensions_list = { "themes", "terms", "projects" },
+    extensions_list = { "themes", "terms", "projects" }
 }
 
 M.treesitter = {
@@ -201,37 +201,15 @@ M.treesitter = {
             init_selection = "<CR>",
             node_incremental = "<CR>",
             node_decremental = "<BS>",
-            scope_incremental = "<TAB>",
-        },
-    },
+            scope_incremental = "<TAB>"
+        }
+    }
 }
 
 M.notify = function()
-    require("notify").setup {
-        ---@usage Animation style one of { "fade", "slide", "fade_in_slide_out", "static" }
-        stages = "slide",
-        ---@usage Function called when a new window is opened, use for changing win settings/config
-        on_open = nil,
-        ---@usage Function called when a window is closed
-        on_close = nil,
-        ---@usage timeout for notifications in ms, default 5000
-        timeout = 2000,
-        -- Render function for notifications. See notify-render()
-        render = "default",
-        ---@usage highlight behind the window for stages that change opacity
-        background_colour = "Normal",
-        ---@usage minimum width for notification windows
-        minimum_width = 50,
-        ---@usage Icons for the different levels
-        icons = {
-            ERROR = "",
-            WARN = "",
-            INFO = "",
-            DEBUG = "",
-            TRACE = "✎",
-        },
-    }
-
+    require("notify").setup({
+        stages = "slide"
+    })
     vim.notify = require "notify"
 end
 
@@ -241,9 +219,6 @@ end
 
 M.project = function()
     require("project_nvim").setup {
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
         detection_methods = { "pattern" },
         patterns = {
             "README.md",
@@ -256,11 +231,11 @@ M.project = function()
             ".svn",
             "Makefile",
         },
-        exclude_dirs = { "~/.local/*" },
+        exclude_dirs = { "~/.local/*" }
     }
 end
 
-M.lspconfig = function ()
+M.lspconfig = function()
     require "plugins.configs.lspconfig"
     require "custom.plugins.lsp"
 end
@@ -269,10 +244,8 @@ M.lsp_signature = function()
     require("lsp_signature").setup()
 end
 
-M.aerial = function()
-    require("aerial").setup {
-        min_width = { 25, 0.13 },
-    }
+M.symbols_outline = function()
+    require("symbols-outline").setup()
 end
 
 return M
