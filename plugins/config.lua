@@ -85,56 +85,63 @@ M.cmp = function()
     }
 end
 
-M.alpha = function()
-    local function button(sc, txt, keybind)
-        local sc_ = sc:gsub("%s", ""):gsub("SPC", "<leader>")
-
-        local opts = {
-            position = "center",
-            text = txt,
-            shortcut = sc,
-            cursor = 5,
-            width = 36,
-            align_shortcut = "right",
-            hl = "AlphaButtons"
-        }
-
-        if keybind then
-            opts.keymap = { "n", sc_, keybind, { noremap = true, silent = true } }
-        end
-
-        return {
-            type = "button",
-            val = txt,
-            on_press = function()
-                local key = vim.api.nvim_replace_termcodes(sc_, true, false, true) or ""
-                vim.api.nvim_feedkeys(key, "normal", false)
-            end,
-            opts = opts
-        }
-    end
-
-    return {
-        header = {
-            val = {
-                [[███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗]],
-                [[████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║]],
-                [[██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║]],
-                [[██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║]],
-                [[██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║]],
-                [[╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝]],
-            },
-        },
-        buttons = {
-            val = {
-                button("SPC f p", "  Find Projects  ", ":Telescope projects<CR>"),
-                button("SPC f o", "  Recent File  ", ":Telescope oldfiles<CR>"),
-                button("SPC f f", "  Find File  ", ":Telescope find_files<CR>"),
-                button("SPC p s", "  Update Plugins  ", ":PackerSync<CR>"),
-                button("SPC e s", "  Settings", ":e ~/.config/nvim/lua/custom/chadrc.lua | :cd %:p:h <CR>"),
-            }
-        }
+M.dashboard = function()
+    local db = require('dashboard')
+    db.custom_header = {
+        [[]],
+        [[]],
+        [[]],
+        [[]],
+        [[███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗]],
+        [[████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║]],
+        [[██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║]],
+        [[██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║]],
+        [[██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║]],
+        [[╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝]],
+        [[]],
+        [[]],
+        [[]],
+        [[]],
     }
+    db.custom_center = {
+        {
+            icon = '  ',
+            desc = 'Projects                                ',
+            action = 'Telescope projects',
+            shortcut = 'SPC f p'
+        },
+        {
+            icon = '  ',
+            desc = 'Recently Files                          ',
+            action = 'Telescope oldfiles',
+            shortcut = 'SPC f o'
+        },
+        {
+            icon = '  ',
+            desc = 'Find Files                              ',
+            action = 'Telescope find_files',
+            shortcut = 'SPC f f'
+        },
+        {
+            icon = '  ',
+            desc = 'Update Plugins                          ',
+            action = 'PackerSync',
+            shortcut = 'SPC l s'
+        },
+        {
+            icon = '  ',
+            desc = 'Edit Config                             ',
+            action = 'edit ~/.config/nvim/lua/custom/chadrc.lua',
+            shortcut = 'SPC x x'
+        },
+        {
+            icon = '  ',
+            desc = 'Edit Projects                           ',
+            action = 'edit ~/.local/share/nvim/project_nvim/project_history',
+            shortcut = 'SPC x x'
+        },
+    }
+    db.custom_footer = { 'Talk is cheap. Show me the code.' }
 end
 
 M.nvim_tree = {
